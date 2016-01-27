@@ -2,3 +2,9 @@
 ._*
 .DS_*
 thumbs.db
+Guardfile
+*.sublime-project
+*.sublime-workspace
+*.svn
+node_modules
+bower_modules

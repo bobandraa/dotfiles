@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
-unsetopt correct_all 
+unsetopt correct_all
 unsetopt correct
 
 # Set to this to use case-sensitive completion
@@ -23,7 +23,7 @@ unsetopt correct
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git ansiweather zsh-history-substring-search zsh-notify zsh-url-highlighter zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -39,7 +39,7 @@ if [[ $platform = 'Linux' ]]; then
 elif [[ $platform = 'Darwin' ]]; then
   alias a='ls -lthG' # sort by date modified
   alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
-  export EDITOR='mate -w'  # OS-X SPECIFIC - TextMate, w is to wait for TextMate window to close
+  export EDITOR='sublime'
   alias lock="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
   alias flushdns="dscacheutil -flushcache"
 fi
@@ -58,10 +58,10 @@ alias llt='ls -lth'
 alias q='exit'
 
 # SVN shortcuts
-alias ss='svn st'
-alias sup='svn up'
-alias sci='svn ci'
-alias sl='svn log'
+# alias ss='svn st'
+# alias sup='svn up'
+# alias sci='svn ci'
+# alias sl='svn log'
 
 # git shortcuts
 alias changelog='git log `git log -1 --format=%H -- CHANGELOG*`..; cat CHANGELOG*'
@@ -70,11 +70,6 @@ alias dtc='git difftool --cached'
 alias dth='git difftool HEAD'
 alias ga='git add'
 alias gb='git branch'
-alias gc='git commit'
-alias gca='git commit -a'
-alias gcam='git commit -am'
-alias gcm='git commit -m'
-alias gco='git checkout'
 alias gd='git diff'
 alias gdt='git difftool'
 alias gg='git lg'
@@ -85,9 +80,48 @@ alias gp='git push'
 alias g='git status -sb'
 alias gs='git status'
 alias grm='git status --porcelain | ruby -e "puts STDIN.read.scan(/^\\s+D\\s+(.+)\$/).join(\"\\n\")" | xargs git rm'
-alias open_html='open -a Google\ Chrome build/*/index_us.html'
-alias open_archived='open -a Google\ Chrome build/_archived/*/index_us.html'
-alias open_firefox='open -a Firefox build/*/index_us.html'
+
+function gc(){
+  git checkout $1
+}
+
+alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
+# You can use whatever you want as an alias, like for Mondays:
+alias FUCK='fuck'
+
+alias weather='ansiweather'
+
+#npm shortcuts
+function ni(){
+  npm install $1
+}
+
+#bonus shortcuts
+alias unclipse='unclipse .'
+alias gw='grunt;grunt watch'
+alias caf=caffeinate -d
+alias pm=python3 manage.py
+alias train=sl
+
+alias sublime_dir='cd ~/Library/Application\ Support/Sublime\ Text\ 3'
+
+alias zshrc='sublime ~/.zshrc'
+
+alias dotfiles="ls -ld ~/.[^.]*"
+
+alias fix='$EDITOR `git diff --name-only | uniq`'
+
+function goto(){
+  cd $(dirname $(which $1))
+}
+
+function pyserver(){
+  python -m SimpleHTTPServer $1
+}
+
+function phpserver(){
+  php -S localhost:$1
+}
 
 # =============================
 # = Directory save and recall =
@@ -98,7 +132,7 @@ alias open_firefox='open -a Firefox build/*/index_us.html'
 #    You can save a directory using an abbreviation of your choosing. Eg. save ms
 #    You can subsequently move to one of the saved directories by using cd with
 #    the abbreviation you chose. Eg. cd ms  (Note that no '$' is necessary.)
-#    
+#
 #    Make sure to also set the appropriate shell option:
 #    zsh:
 #      setopt CDABLE_VARS
@@ -154,5 +188,18 @@ function save (){
   source ~/.dirs
   echo "Directory shortcuts:" `showdirs`
 }
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH=$PATH:$HOME/bin 
+PATH=$PATH:$HOME/bin
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH=/Users/cshaver/npm/lib/node_modules/grunt-cli/bin:$PATH
+export PATH="/Users/cshaver/Library/Android/sdk/platform-tools":$PATH
+
+prefix=/Users/cshaver/.npmpackages
+NPM_PACKAGES=/Users/cshaver/.npm-packages
+NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+PATH="$NPM_PACKAGES/bin:$PATH"
+PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
+eval "`npm completion`"
+
+export NVM_DIR="/Users/cshaver/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
