@@ -1,6 +1,8 @@
 [user]
 	name = Cristina Shaver
 	email = cristina.shaver@gmail.com
+[user "personal"]
+	email = cristina.shaver@gmail.com
 
 [alias]
 	st = status -sb
@@ -23,9 +25,11 @@
   rc = rebase --continue
   ra = rebase --abort
   rs = rebase --skip
+	fix = !$EDITOR `git diff --name-only | uniq`
   cot = checkout --theirs
   com = checkout --mine
   delbranch = push origin --delete
+	user = "!f() { git config user.email `git config --get user.$1.email`; }; f"
 
 [rerere]
 	enabled = true
@@ -70,6 +74,11 @@
 [push]
 	default = tracking
 
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [difftool]
@@ -84,7 +93,5 @@
 [mergetool]
 	prompt = false
 
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+[credential]
+	helper = osxkeychain

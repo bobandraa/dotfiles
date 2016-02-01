@@ -57,33 +57,8 @@ alias lt='ls -th'
 alias llt='ls -lth'
 alias q='exit'
 
-# SVN shortcuts
-# alias ss='svn st'
-# alias sup='svn up'
-# alias sci='svn ci'
-# alias sl='svn log'
-
 # git shortcuts
-alias changelog='git log `git log -1 --format=%H -- CHANGELOG*`..; cat CHANGELOG*'
-alias dt='git difftool'
-alias dtc='git difftool --cached'
-alias dth='git difftool HEAD'
-alias ga='git add'
-alias gb='git branch'
-alias gd='git diff'
-alias gdt='git difftool'
-alias gg='git lg'
-alias ggg='git logc'
-alias gggg='git logd'
-alias gl='git pull --rebase'
-alias gp='git push'
-alias g='git status -sb'
-alias gs='git status'
-alias grm='git status --porcelain | ruby -e "puts STDIN.read.scan(/^\\s+D\\s+(.+)\$/).join(\"\\n\")" | xargs git rm'
-
-function gc(){
-  git checkout $1
-}
+alias g='git'
 
 alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
 # You can use whatever you want as an alias, like for Mondays:
@@ -97,8 +72,6 @@ function ni(){
 }
 
 #bonus shortcuts
-alias unclipse='unclipse .'
-alias gw='grunt;grunt watch'
 alias caf=caffeinate -d
 alias pm=python3 manage.py
 alias train=sl
@@ -108,8 +81,6 @@ alias sublime_dir='cd ~/Library/Application\ Support/Sublime\ Text\ 3'
 alias zshrc='$EDITOR ~/.zshrc'
 
 alias dotfiles="ls -ld ~/.[^.]*"
-
-alias fix='$EDITOR `git diff --name-only | uniq`'
 
 function goto(){
   cd $(dirname $(which $1))
