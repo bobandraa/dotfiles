@@ -39,7 +39,7 @@ if [[ $platform = 'Linux' ]]; then
 elif [[ $platform = 'Darwin' ]]; then
   alias a='ls -lthG' # sort by date modified
   alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
-  export EDITOR='sublime'
+  export EDITOR='atom'
   alias lock="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
   alias flushdns="dscacheutil -flushcache"
 fi
@@ -105,7 +105,7 @@ alias train=sl
 
 alias sublime_dir='cd ~/Library/Application\ Support/Sublime\ Text\ 3'
 
-alias zshrc='sublime ~/.zshrc'
+alias zshrc='$EDITOR ~/.zshrc'
 
 alias dotfiles="ls -ld ~/.[^.]*"
 
