@@ -23,9 +23,19 @@ unsetopt correct
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ansiweather zsh-history-substring-search zsh-notify zsh-url-highlighter zsh-syntax-highlighting)
-
-source $ZSH/oh-my-zsh.sh
+plugins=(
+          ansiweather
+          colored-man-pages
+          emoji
+          frontend-search
+          gulp
+          lol
+          nyan
+          zsh_reload
+          zsh-url-highlighter
+          zsh-syntax-highlighting
+          history-substring-search
+        )
 
 # Customize to your needs...
 
@@ -43,6 +53,9 @@ elif [[ $platform = 'Darwin' ]]; then
   alias lock="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
   alias flushdns="dscacheutil -flushcache"
 fi
+
+# itermocil autocomplete
+compctl -g '~/.teamocil/*(:t:r)' itermocil
 
 # ruby (irb)
 alias irb='irb --readline -r irb/completion'
@@ -175,4 +188,5 @@ eval "`npm completion`"
 export NVM_DIR="/Users/cshaver/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+source $ZSH/oh-my-zsh.sh
 source ~/.extras

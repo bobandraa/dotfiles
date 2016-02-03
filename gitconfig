@@ -3,6 +3,10 @@
 	email = cristina.shaver@gmail.com
 [user "personal"]
 	email = cristina.shaver@gmail.com
+[user "traction"]
+	email = cshaver@tractionco.com
+[user "apple"]
+	email = cshaver@apple.com
 
 [alias]
 	st = status -sb
@@ -12,9 +16,10 @@
 	df = diff --name-status
 	files = "!f() { git difftool --name-status $1; }; f"
 	pull = pull --ff
-	gr = log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m" --simplify-by-decoration
+	reup = rebase-update
+	gr = log --graph --oneline --decorate --all
 	d = difftool
-	dt = difftool --cached
+	dc = difftool --cached
 	clone = clone --recursive
 	alias = config --get-regexp 'alias.*'
   ignored = !git ls-files -v | grep "^[[:lower:]]"

@@ -1,0 +1,10 @@
+windows:
+  - name: cshaver
+    root: ~/Personal/cshaver.github.io/
+    layout: main-vertical
+    panes:
+      - jekyll serve
+      - pyserver 1234
+      - commands:
+        - git st
+        focus: true

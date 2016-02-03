@@ -1,0 +1,11 @@
+windows:
+  - name: dotfiles
+    root: ~/Personal/dotfiles/cshaver/
+    layout: even-horizontal
+    panes:
+      - commands:
+        - cd dotfiles
+        - git st
+      - commands:
+        - cd atom
+        - git st
