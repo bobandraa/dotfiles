@@ -1,42 +1,45 @@
-# load antigen
-source $HOME/.dotfiles/antigen/antigen.zsh
+# load zgen
+source "${HOME}/.dotfiles/zgen/zgen.zsh"
 
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
+# check if there's no init script
+if ! zgen saved; then
+    echo "Creating a zgen save"
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
-antigen bundle heroku
-antigen bundle pip
-antigen bundle autojump
-antigen bundle brew
-antigen bundle rsync
-antigen bundle compleat
-antigen bundle common-aliases
-antigen bundle git-extras
-antigen bundle git-flow
-antigen bundle fcambus/ansiweather
-antigen bundle colored-man-pages
-antigen bundle emoji
-antigen bundle frontend-search
-antigen bundle gulp
-antigen bundle lol
-antigen bundle nyan
-antigen bundle mvn
-antigen bundle zsh_reload
-antigen bundle history-substring-search
-antigen bundle ascii-soup/zsh-url-highlighter url
+    zgen oh-my-zsh
 
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
+    # plugins
+    zgen oh-my-zsh plugins/git
+    zgen oh-my-zsh plugins/heroku
+    zgen oh-my-zsh plugins/pip
+    zgen oh-my-zsh plugins/autojump
+    zgen oh-my-zsh plugins/brew
+    zgen oh-my-zsh plugins/rsync
+    zgen oh-my-zsh plugins/compleat
+    zgen oh-my-zsh plugins/common-aliases
+    zgen oh-my-zsh plugins/git-extras
+    zgen oh-my-zsh plugins/git-flow
+    zgen oh-my-zsh plugins/colored-man-pages
+    zgen oh-my-zsh plugins/emoji
+    zgen oh-my-zsh plugins/frontend-search
+    zgen oh-my-zsh plugins/gulp
+    zgen oh-my-zsh plugins/lol
+    zgen oh-my-zsh plugins/nyan
+    zgen oh-my-zsh plugins/mvn
+    zgen oh-my-zsh plugins/zsh_reload
+    zgen oh-my-zsh plugins/history-substring-search
+    zgen load fcambus/ansiweather
+    zgen load ascii-soup/zsh-url-highlighter url
+    zgen load zsh-users/zsh-syntax-highlighting
 
-# Set theme
-antigen theme robbyrussell
+    # completions
+    zgen load zsh-users/zsh-completions src
 
-# Tell antigen that you're done.
-antigen apply
+    # theme
+    zgen oh-my-zsh themes/robbyrussell
 
-# Customize to your needs...
+    # save all to init script
+    zgen save
+fi
 
 # Handle the fact that this file will be used with multiple OSs
 platform=`uname`
