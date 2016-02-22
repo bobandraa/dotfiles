@@ -48,7 +48,7 @@ if [[ $platform = 'Linux' ]]; then
 elif [[ $platform = 'Darwin' ]]; then
   alias a='ls -lthG' # sort by date modified
   alias ls='ls -G'  # OS-X SPECIFIC - the -G command in OS-X is for colors, in Linux it's no groups
-  export EDITOR='atom'
+  export EDITOR='atom-beta'
   alias lock="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
   alias flushdns="dscacheutil -flushcache"
 fi
