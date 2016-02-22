@@ -1,0 +1,10 @@
+windows:
+  - name: dotfiles
+    root: ~/Projects/concierge-svn/
+    layout: even-horizontal
+    panes:
+      - commands:
+        - concierge
+      - commands:
+        - cd ../concierge-web
+        - gulp

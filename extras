@@ -1,0 +1,2 @@
+export MAVEN_OPTS="-Denv=it -Duser.timezone=GMT -Xms1024m -Xmx2048m -DallowOverride=true -DGENEVA_ENV=UAT -Dport.http.nonssl=8080 -Dproperty.encryption.key=CN9kzPrXb5zqVaEEaTld1w== -Dstonehenge.keystore.path=/Users/cshaver/Projects/concierge-svn/src/main/resources/Certificates-QA/stonehenge.jks -DpropertyFileLocation=/Users/cshaver/Projects/concierge-svn/src/main/resources/dev.properties -Dcatalina.logs=/Users/cshaver/Projects/concierge-svn/logs/"
+alias concierge='maven clean compile install -Dmaven.test.skip=true tomcat:run'

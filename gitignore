@@ -8,3 +8,4 @@ Guardfile
 *.svn
 node_modules
 bower_modules
+extras

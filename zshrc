@@ -1,41 +1,40 @@
-# Path to your oh-my-zsh configuration.
-export ZSH=$HOME/.oh-my-zsh
+# load antigen
+source $HOME/.dotfiles/antigen/antigen.zsh
 
-ZSH_THEME="robbyrussell"
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
 
-unsetopt correct_all
-unsetopt correct
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle git
+antigen bundle heroku
+antigen bundle pip
+antigen bundle autojump
+antigen bundle brew
+antigen bundle rsync
+antigen bundle compleat
+antigen bundle common-aliases
+antigen bundle git-extras
+antigen bundle git-flow
+antigen bundle fcambus/ansiweather
+antigen bundle colored-man-pages
+antigen bundle emoji
+antigen bundle frontend-search
+antigen bundle gulp
+antigen bundle lol
+antigen bundle nyan
+antigen bundle mvn
+antigen bundle zsh_reload
+antigen bundle history-substring-search
+antigen bundle ascii-soup/zsh-url-highlighter url
 
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
 
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+# Set theme
+antigen theme robbyrussell
 
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(
-          ansiweather
-          colored-man-pages
-          emoji
-          frontend-search
-          gulp
-          lol
-          nyan
-          zsh_reload
-          zsh-url-highlighter
-          zsh-syntax-highlighting
-          history-substring-search
-        )
+# Tell antigen that you're done.
+antigen apply
 
 # Customize to your needs...
 
@@ -56,18 +55,18 @@ fi
 
 # itermocil autocomplete
 compctl -g '~/.teamocil/*(:t:r)' itermocil
+alias ic='itermocil'
 
 # ruby (irb)
 alias irb='irb --readline -r irb/completion'
 
+alias maven='mvn-color'
+
+alias tree='tree --dirsfirst -FC -I "node_modules|.*|*.png|*.jpg|*.gif"'
+
 # Navigation and directory listing
 alias ..='cd ..'
 alias ...='cd .. ; cd ..'
-alias ll='ls -hl'
-alias la='ls -ah'
-alias lla='ls -lah'
-alias lt='ls -th'
-alias llt='ls -lth'
 alias q='exit'
 
 # git shortcuts
@@ -76,8 +75,11 @@ alias g='git'
 alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
 # You can use whatever you want as an alias, like for Mondays:
 alias FUCK='fuck'
+alias please='sudo $(fc -ln -1)'
 
 alias weather='ansiweather'
+
+alias atom='atom-beta'
 
 #npm shortcuts
 function ni(){
@@ -85,15 +87,11 @@ function ni(){
 }
 
 #bonus shortcuts
-alias caf=caffeinate -d
-alias pm=python3 manage.py
-alias train=sl
+alias caf='caffeinate -d'
+alias pm='python3 manage.py'
 
-alias sublime_dir='cd ~/Library/Application\ Support/Sublime\ Text\ 3'
-
-alias zshrc='$EDITOR ~/.zshrc'
-
-alias dotfiles="ls -ld ~/.[^.]*"
+alias gitconfig='$EDITOR ~/.gitconfig'
+alias dotfiles="ldot"
 
 function goto(){
   cd $(dirname $(which $1))
@@ -106,6 +104,7 @@ function pyserver(){
 function phpserver(){
   php -S localhost:$1
 }
+
 
 # =============================
 # = Directory save and recall =
@@ -175,18 +174,14 @@ function save (){
 PATH=$PATH:$HOME/bin
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH=/Users/cshaver/npm/lib/node_modules/grunt-cli/bin:$PATH
-export PATH="/Users/cshaver/Library/Android/sdk/platform-tools":$PATH
 
 prefix=/Users/cshaver/.npmpackages
 NPM_PACKAGES=/Users/cshaver/.npm-packages
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 PATH="$NPM_PACKAGES/bin:$PATH"
-PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
 eval "`npm completion`"
 
 export NVM_DIR="/Users/cshaver/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-source $ZSH/oh-my-zsh.sh
 source ~/.extras

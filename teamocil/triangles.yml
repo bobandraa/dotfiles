@@ -1,0 +1,11 @@
+windows:
+  - name: triangles
+    root: ~/Personal/pretty-delaunay/
+    layout: main-vertical
+    panes:
+      - gulp
+      - pyserver 1234
+      - commands:
+        - git st
+        - open http://localhost:1234/demo/index.html
+        focus: true

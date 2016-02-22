@@ -1,0 +1,6 @@
+windows:
+  - name: caf
+    root: ~
+    panes:
+      - commands:
+        - caffeinate -d
