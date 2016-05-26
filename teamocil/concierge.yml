@@ -4,7 +4,7 @@ windows:
     layout: even-horizontal
     panes:
       - commands:
-        - concierge
+        - concierge --quiet
       - commands:
         - cd ../concierge-web
-        - gulp
+        - gulp;gulp watch

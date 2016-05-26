@@ -8,3 +8,5 @@ Guardfile
 *.svn
 node_modules
 bower_modules
+extras
+teamocil/*.yml

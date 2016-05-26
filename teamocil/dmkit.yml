@@ -1,7 +1,0 @@
-windows:
-  - name: dmkit
-    root: ~/Projects/ac-dmkit/
-    layout: even-horizontal
-    panes:
-      - gulp debug
-      - git st

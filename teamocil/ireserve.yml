@@ -1,11 +1,9 @@
 windows:
   - name: dotfiles
-    root: ~/.dotfiles/
+    root: ~/Projects/ireserve-cms-htmls/
     layout: even-horizontal
     panes:
       - commands:
-        - cd dotfiles
-        - git st
+        - bin/unclipse .
       - commands:
-        - cd atom
-        - git st
+        - gulp
