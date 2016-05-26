@@ -21,7 +21,6 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/colored-man-pages
     zgen oh-my-zsh plugins/emoji
     zgen oh-my-zsh plugins/frontend-search
-    zgen oh-my-zsh plugins/gulp
     zgen oh-my-zsh plugins/lol
     zgen oh-my-zsh plugins/nyan
     zgen oh-my-zsh plugins/mvn
@@ -71,6 +70,7 @@ alias tree='tree --dirsfirst -FC -I "node_modules|.*|*.png|*.jpg|*.gif"'
 alias ..='cd ..'
 alias ...='cd .. ; cd ..'
 alias q='exit'
+alias links='ls -la | grep "\->"'
 
 # git shortcuts
 alias g='git'
@@ -82,7 +82,38 @@ alias please='sudo $(fc -ln -1)'
 
 alias weather='ansiweather'
 
+alias lla='ls -la'
+
 alias atom='atom-beta'
+
+alias find-images='find -E . -regex ".*\.(jpg|gif|png|jpeg)" -print0 | xargs -0 du -hc'
+alias images-total='find-images | tail -n1 | sed -n '"'"'$s/\t.*//p'"'"''
+alias imagemin-all='find -E . -regex ".*\.(jpg|gif|png|jpeg)" -execdir imagemin '"'"'{}'"'"' . \;'
+
+function tiny-images() {
+  images-total | xargs -L1 -I '$' echo '$ initial size'
+  imagemin-all
+  images-total | xargs -L1 -I '$' echo '$ post-minified'
+}
+
+function svn-stash() {
+  svn diff src gulp WEB-INF package.json > .stash.patch
+  svn revert -R src gulp WEB-INF package.json
+}
+
+function svn-stash-pop() {
+  patch -p0 < .stash.patch
+}
+
+function show-colors() {
+  for code in {30..37}; do \
+    echo -en "\e[${code}m"'\\e['"$code"'m'"\e[0m"; \
+    echo -en "  \e[$code;1m"'\\e['"$code"';1m'"\e[0m"; \
+    echo -en "  \e[$code;3m"'\\e['"$code"';3m'"\e[0m"; \
+    echo -en "  \e[$code;4m"'\\e['"$code"';4m'"\e[0m"; \
+    echo -e "  \e[$((code+60))m"'\\e['"$((code+60))"'m'"\e[0m"; \
+  done
+}
 
 #npm shortcuts
 function ni(){
@@ -133,7 +164,7 @@ fi
 source ~/.dirs
 
 alias show='cat ~/.dirs'
-alias showdirs="cat ~/.dirs | ruby -e \"puts STDIN.read.split(10.chr).sort.map{|x| x.gsub(/^(.+)=.+$/, '\\1')}.join(', ')\""
+alias showdirs='cat ~/.dirs | ruby -e "puts STDIN.read.split(10.chr).sort.map{|x| x.gsub(/^(.+)=.+$/, '"'"'\\1'"'"')}.join('"'"', '"'"')"'
 
 function save (){
   local usage
@@ -186,5 +217,8 @@ eval "`npm completion`"
 
 export NVM_DIR="/Users/cshaver/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# gulp autocomplete
+eval "$(gulp --completion=zsh)"
 
 source ~/.extras

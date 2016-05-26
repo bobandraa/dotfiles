@@ -4,7 +4,7 @@
 [user "personal"]
 	email = cristina.shaver@gmail.com
 [user "traction"]
-	email = cshaver@tractionco.com
+	email = cshaver@tractionco.net
 [user "apple"]
 	email = cshaver@apple.com
 
@@ -19,13 +19,16 @@
 	reup = rebase-update
 	gr = log --graph --oneline --decorate --all
 	d = difftool
+	dt = difftool
 	dc = difftool --cached
 	clone = clone --recursive
 	alias = config --get-regexp 'alias.*'
   ignored = !git ls-files -v | grep "^[[:lower:]]"
   assumed = !git ls-files -v | grep "^[[:lower:]]"
   assume = update-index --assume-unchanged
+	ignore = update-index --assume-unchanged
   unassume = update-index --no-assume-unchanged
+	unignore = update-index --no-assume-unchanged
   r = rebase
   rc = rebase --continue
   ra = rebase --abort
